@@ -19,6 +19,10 @@ public class MemberService {
 
 
     public MemberDTO login(MemberDTO memberDTO) {
+        /*
+            1.이메일,비밀번호 두 값 모두 일치하는 db조회결과를 가져옴(조회결과 있으면 로그인 성공)
+            2.이메일로 db에서 조회에서 서비스에서 비밀번호를 서로 빅하여 일치하면 로그인 성공
+        */
         return memberRepository.login(memberDTO);
 
     }
@@ -30,4 +34,15 @@ public class MemberService {
     public MemberDTO findById(Long id) {
         return memberRepository.findById(id);
     }
+
+    public void delete(Long id) {
+        memberRepository.delete(id);
+    }
+
+
+    public void update(MemberDTO memberDTO) {
+        memberRepository.update(memberDTO);
+    }
+
+
 }

@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="/resources/css/main.css">
 </head>
 <body>
     <h2>회원목록</h2>
@@ -22,22 +23,18 @@
             <td>${member.memberName}</td><br>
             <td>${member.memberBirth}</td><br>
             <td>${member.memberMobile}</td><br>
-
+            <td>
+                <button onclick="delete_fn('${member.id}')">삭제</button>
+            </td>
         </tr>
 
     </c:forEach>
     </table>
+    <%@include file="component/footer.jsp"%>
 </body>
 <script>
-    function findById(){
-        $.ajax({
-            type:"get",
-            url:"/views/memberDetail",
-            data:{id:id},
-            success:function (data){
-
-            }
-        })
+    const delete_fn = (id) => {
+        location.href="/delete?id="+id;
     }
 </script>
 </html>
