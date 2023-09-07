@@ -27,7 +27,7 @@
   console.log(loginEmail.length);
   if(loginEmail.length != 0){
     //로그인 했음
-    loginArea.innerHTML = "<a href ='mypage'>" + loginEmail + "님 환영해요!</a>" +
+    loginArea.innerHTML = "<a href ='/myPage'>" + loginEmail + "님 환영해요!</a>" +
             "<a href='/logout'>logout</a>";
   }else{
     //비로그인

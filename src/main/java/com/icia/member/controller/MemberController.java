@@ -5,10 +5,7 @@ import com.icia.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -36,6 +33,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
+    //dto로 받아왔다하더라도 dto안에 값은 이메일과 패스워드만 있는 상태이다.
     public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
         MemberDTO memberDTO1 = memberService.login(memberDTO);
         if (memberDTO1 != null) {
@@ -90,6 +88,29 @@ public class MemberController {
         memberService.update(memberDTO);
         return "redirect:/members";
     }
+//    @GetMapping("/update")
+//    //session으로 받은 이메일 값 활용해서 dto받아오기
+//    public String updateForm(HttpSession session, Model model){
+//        //세션에 저장된 이메일 꺼내기 오브젝트가 가장크니까 강제형변환해서 넣어줘야함
+//        String memberEmail = (String) session.getAttribute("logninEmail");
+//        MemberDTO memberDTO= memberService.findByMemberEamil(memberEmail);
+//        model.addAttribute("member", memberDTO);
+//        return "memberUpdate";
+//    }
 
+    @GetMapping("/myPage")
+    public String myPage(){
+        return "memberMain";
+    }
+
+    @PostMapping("/duplicate-check")
+    public @ResponseBody String emailCheck(@RequestParam("memberEmail") String memberEmail){
+        MemberDTO memberDTO1 = memberService.findByEmail(memberEmail);
+        if(memberDTO1 == null){
+            return "yes";
+        }
+        return "no";
+    }
 }
+
 

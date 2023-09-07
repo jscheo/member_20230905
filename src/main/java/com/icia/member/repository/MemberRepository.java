@@ -15,27 +15,19 @@ public class MemberRepository {
         System.out.println("memberDTO = " + memberDTO);
         sql.insert("Member.save", memberDTO);
     }
-
-
     public MemberDTO login(MemberDTO memberDTO) {
         return sql.selectOne("Member.login", memberDTO);
     }
 
-    public List<MemberDTO> findAll() {
-        return sql.selectList("Member.findAll");
+    public List<MemberDTO> findAll() {return sql.selectList("Member.findAll");}
+
+    public MemberDTO findById(Long id) {return sql.selectOne("Member.findById", id);}
+
+    public void delete(Long id) {sql.delete("Member.delete", id);}
+
+    public void update(MemberDTO memberDTO) {sql.update("Member.update", memberDTO);}
+
+        public MemberDTO findByEmail(String memberEmail) {
+        return sql.selectOne("Member.findByEmail", memberEmail);
     }
-
-    public MemberDTO findById(Long id) {
-        return sql.selectOne("Member.findById", id);
-    }
-
-    public void delete(Long id) {
-        sql.delete("Member.delete", id);
-    }
-
-    public void update(MemberDTO memberDTO) {
-        sql.update("Member.update", memberDTO);
-    }
-
-
 }

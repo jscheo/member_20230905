@@ -9,12 +9,8 @@
 <%@include file="component/nav.jsp"%>
 
 
-<%--    <a href="/save">회원가입페이지 이동</a>--%>
-<%--    <a href="/login">로그인페이지 이동</a>--%>
-<%--    <a href="/members">회원목록페이지 이동</a><br>--%>
-
     로그인이메일: ${sessionScope.loginEmail}<br>
-
+    <a href="/ajax">ajax 알아보기</a>
 <%@include file="component/footer.jsp"%>
 
 

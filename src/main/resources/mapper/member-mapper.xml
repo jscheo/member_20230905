@@ -30,4 +30,7 @@
             where id = #{id}
     </update>
 
+    <select id="findByEmail" parameterType="String" resultType="member">
+        select * from member_table whrer memberEmail= #{memberEmail}
+    </select>
 </mapper>
