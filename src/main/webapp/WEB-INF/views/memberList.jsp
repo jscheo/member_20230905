@@ -6,6 +6,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style>
         table {
             margin: auto;
@@ -30,13 +31,12 @@
             <c:forEach items="${memberList}" var="member">
                 <tr>
                     <td>${member.id}</td>
-                    <td>${member.memberEmail}</td>
+                    <td id="detail-member" value="${member.memberEmail}" onclick="detail_member('${member.memberEmail}')"></td>
                     <td>${member.memberName}</td>
                     <td>${member.memberBirth}</td>
                     <td>${member.memberMobile}</td>
                     <td>
                         <button class="btn btn-info" onclick="detail_fn('${member.id}')">조회</button>
-<%--                        <a href="/member?id=${member.id}">조회</a>--%>
                     </td>
                     <td>
                         <button class="btn btn-danger" onclick="delete_fn('${member.id}')">삭제</button>
@@ -46,10 +46,30 @@
         </table>
     </div>
 </div>
-
+<div id="detailMember">
+</div>
 <%@include file="component/footer.jsp" %>
 </body>
 <script>
+    const detail_member = (memberEmail) => {
+        // const detailMember = document.getElementById("detail-member").value;
+        $.ajax({
+            type: "post",
+            url: "/detail-member",
+            data: {memberEmail: memberEmail},
+            success: function (res) {
+                const sectorDetail = document.getElementById("detailMember");
+                let result = "<table>";
+                result += "<tr>";
+                result += "<td>" + res.memberName + "</td>";
+                result += "<td>" + res.memberBirth + "</td>";
+                result += "<td>" + res.memberMobile + "</td>";
+                result += "</tr>";
+                result += "</table>";
+                sectorDetail.innerHTML = result;
+            }
+        });
+    }
     const detail_fn = (id) => {
         location.href = "/member?id=" + id;
     }

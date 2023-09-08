@@ -8,5 +8,5 @@
     console.log(date.getFullYear());
     const footer = document.getElementById("footer");
     const footer1 = document.querySelector("#footer");
-    footer.innerHTML = "<p>&copy; " + date.getFullYear() + "&nbsp; junsangWorld All rights reseves";
+    footer.innerHTML = "<p>&copy; " + date.getFullYear() + "&nbsp; Hello everyone All rights reseves";
 </script>

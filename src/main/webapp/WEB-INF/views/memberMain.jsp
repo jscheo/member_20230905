@@ -10,7 +10,7 @@
 <%@include file="component/header.jsp"%>
 <%@include file="component/nav.jsp"%>
     <h2>memberMain.jsp</h2>
-    로그인이메일: ${sessionScope.loginEmail} <br>
+    로그인이메일: ${sessionScope.loginEmail} <br><br>
 
     <button class="btn btn-dark" onclick="update_fn('${member.id}')">회원정보수정</button>
 
@@ -19,8 +19,8 @@
         <a href="/members">회원목록</a>
     </c:if>
 
-    <a href="/logout">로그아웃</a>
-    <a href="/">index로 이동</a>
+    <button class="btn btn-dark"><a href="/logout">로그아웃</a></button>
+    <button class="btn btn-dark"><a href="/">index로 이동</a></button>
 <%@include file="component/footer.jsp"%>
 
 </body>

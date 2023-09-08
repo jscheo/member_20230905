@@ -92,8 +92,8 @@ public class MemberController {
 //    //session으로 받은 이메일 값 활용해서 dto받아오기
 //    public String updateForm(HttpSession session, Model model){
 //        //세션에 저장된 이메일 꺼내기 오브젝트가 가장크니까 강제형변환해서 넣어줘야함
-//        String memberEmail = (String) session.getAttribute("logninEmail");
-//        MemberDTO memberDTO= memberService.findByMemberEamil(memberEmail);
+//        String memberEmail = (String) session.getAttribute("loginEmail");
+//        MemberDTO memberDTO= memberService.findByMemberEmail(memberEmail);
 //        model.addAttribute("member", memberDTO);
 //        return "memberUpdate";
 //    }
@@ -110,6 +110,12 @@ public class MemberController {
             return "yes";
         }
         return "no";
+    }
+
+    @PostMapping("/detail-member")
+    public @ResponseBody MemberDTO detailCheck(@RequestParam("memberEmail") String memberEmail){
+        MemberDTO memberDTO = memberService.findByEmail(memberEmail);
+        return memberDTO;
     }
 }
 

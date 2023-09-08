@@ -31,6 +31,6 @@
     </update>
 
     <select id="findByEmail" parameterType="String" resultType="member">
-        select * from member_table whrer memberEmail= #{memberEmail}
+        select * from member_table where memberEmail= #{memberEmail}
     </select>
 </mapper>
